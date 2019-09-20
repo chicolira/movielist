@@ -1,0 +1,91 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <div class="input-field">
+        <input id="search" (keyup.enter)="search()" [(ngModel)]="searchInput" />
+        <label class="label-icon" for="search">
+          <i class="material-icons">search</i>
+        </label>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="container scroll-container main-panel">
+
+  <img class="background-full" *ngIf="movieList.results && movieList.results[0]" [src]="getBackGroundUrl()"/>
+
+  <div class="row"
+    infinite-scroll
+    [infiniteScrollDistance]="scrollDistance"
+    [infiniteScrollThrottle]="scrollThrottle"
+    (scrolled)="onScroll()"
+  >
+    <div *ngFor="let movie of movieList.results" class="col s12 m4 l3">
+      <div class="card large hoverable clickable" (click)="goToDetail(movie)">
+        <div class="card-image">
+          <img class="responsive-img" [src]="'https://image.tmdb.org/t/p/w780/' + movie.poster_path"  onError="this.src='http://leeford.in/wp-content/uploads/2017/09/image-not-found.jpg'" />
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{ movie.title }}</span>
+        </div>
+        <div class="card-action">
+          <span>{{ movieGenresAsString(movie) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="waitingRequest">
+    <div class="col s12 m12 l12 center-align">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
