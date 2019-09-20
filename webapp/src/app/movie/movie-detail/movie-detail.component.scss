@@ -1,0 +1,28 @@
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.card-content .bold {
+  font-weight: bold;
+}
+
+.background-full {
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: .8;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
